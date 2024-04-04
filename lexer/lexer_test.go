@@ -93,6 +93,65 @@ func TestNextToken(t *testing.T) {
 
 		assertTokens(t, input, tests)
 	})
+
+	t.Run("Basic conditionals and keywords", func(t *testing.T) {
+		input := `let ten = 10;
+		let five = 5;
+		
+		let greaterThan = function(x, y) {
+			if (x > y) {
+				return true;
+			} else {
+				return false;
+			}
+		}`
+		tests := []tokenTestType{
+			{token.LET, "let"},
+			{token.IDENT, "ten"},
+			{token.ASSIGN, "="},
+			{token.INT, "10"},
+			{token.SEMICOLON, ";"},
+
+			{token.LET, "let"},
+			{token.IDENT, "five"},
+			{token.ASSIGN, "="},
+			{token.INT, "5"},
+			{token.SEMICOLON, ";"},
+
+			{token.LET, "let"},
+			{token.IDENT, "greaterThan"},
+			{token.ASSIGN, "="},
+			{token.FUNCTION, "function"},
+			{token.LPAREN, "("},
+			{token.IDENT, "x"},
+			{token.COMMA, ","},
+			{token.IDENT, "y"},
+			{token.RPAREN, ")"},
+
+			{token.LBRACE, "{"},
+			{token.IF, "if"},
+			{token.LPAREN, "("},
+			{token.IDENT, "x"},
+			{token.GT, ">"},
+			{token.IDENT, "y"},
+			{token.RPAREN, ")"},
+			{token.LBRACE, "{"},
+			{token.RETURN, "return"},
+			{token.TRUE, "true"},
+			{token.SEMICOLON, ";"},
+			{token.RBRACE, "}"},
+			{token.ELSE, "else"},
+			{token.LBRACE, "{"},
+			{token.RETURN, "return"},
+			{token.FALSE, "false"},
+			{token.SEMICOLON, ";"},
+			{token.RBRACE, "}"},
+			{token.RBRACE, "}"},
+			{token.EOF, ""},
+		}
+
+		assertTokens(t, input, tests)
+	})
 }
 
 func assertTokens(t testing.TB, input string, tests []tokenTestType) {
