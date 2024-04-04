@@ -14,7 +14,7 @@ type tokenTestType struct {
 func TestNextToken(t *testing.T) {
 
 	t.Run("Basic symbol recognition", func(t *testing.T) {
-		input := "=+(){},;"
+		input := "=+(){},;-!*/<>"
 
 		tests := []tokenTestType{
 			{token.ASSIGN, "="},
@@ -25,6 +25,12 @@ func TestNextToken(t *testing.T) {
 			{token.RBRACE, "}"},
 			{token.COMMA, ","},
 			{token.SEMICOLON, ";"},
+			{token.MINUS, "-"},
+			{token.BANG, "!"},
+			{token.ASTERISK, "*"},
+			{token.SLASH, "/"},
+			{token.LT, "<"},
+			{token.GT, ">"},
 			{token.EOF, ""},
 		}
 
