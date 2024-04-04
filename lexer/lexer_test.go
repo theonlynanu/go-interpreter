@@ -13,7 +13,7 @@ type tokenTestType struct {
 
 func TestNextToken(t *testing.T) {
 
-	t.Run("Basic syntax recognition", func(t *testing.T) {
+	t.Run("Basic symbol recognition", func(t *testing.T) {
 		input := "=+(){},;"
 
 		tests := []tokenTestType{
@@ -39,7 +39,7 @@ func TestNextToken(t *testing.T) {
 			x + y;
 		};
 		
-		let result = add(five, ten)`
+		let result = add(five, ten);`
 
 		tests := []tokenTestType{
 			{token.LET, "let"},
