@@ -152,6 +152,25 @@ func TestNextToken(t *testing.T) {
 
 		assertTokens(t, input, tests)
 	})
+
+	t.Run("Test two-character tokens", func(t *testing.T) {
+		input := `10 == 10;
+		5 != 10;`
+
+		tests := []tokenTestType{
+			{token.INT, "10"},
+			{token.EQ, "=="},
+			{token.INT, "10"},
+			{token.SEMICOLON, ";"},
+
+			{token.INT, "5"},
+			{token.NOT_EQ, "!="},
+			{token.INT, "10"},
+			{token.SEMICOLON, ";"},
+		}
+
+		assertTokens(t, input, tests)
+	})
 }
 
 func assertTokens(t testing.TB, input string, tests []tokenTestType) {
