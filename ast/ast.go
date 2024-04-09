@@ -19,11 +19,11 @@ type Expression interface {
 	expressionNode()
 }
 
+// Root program node for any given AST
 type Program struct {
 	Statements []Statement
 }
 
-// Root program node for any given AST
 func (p *Program) TokenLiteral() string {
 	if len(p.Statements) > 0 {
 		return p.Statements[0].TokenLiteral()
@@ -55,4 +55,15 @@ func (i *Identifier) expressionNode() {}
 
 func (i *Identifier) TokenLiteral() string {
 	return i.Token.Literal
+}
+
+type ReturnStatement struct {
+	Token       token.Token // the 'RETURN' token
+	ReturnValue Expression
+}
+
+// Satisfies the statement interface
+func (rs *ReturnStatement) statementNode() {}
+func (rs *ReturnStatement) TokenLiteral() string {
+	return rs.Token.Literal
 }
