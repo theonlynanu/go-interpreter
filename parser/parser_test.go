@@ -15,7 +15,7 @@ func TestLetStatements(t *testing.T) {
 	input := `
 	let x = 5;
 	let y = 10;
-	let 123456;
+	let foobar = 123456;
 	`
 
 	l := lexer.New(input)
@@ -68,8 +68,8 @@ func TestReturnStatements(t *testing.T) {
 			t.Errorf("stmt not *ast.ReturnStatement - got %T", stmt)
 			continue
 		}
-		if returnStmt.TokenLiteral() != "RETURN" {
-			t.Errorf("returnStmt.TokenLiteral not 'RETURN' - got %q", returnStmt.TokenLiteral())
+		if returnStmt.TokenLiteral() != "return" {
+			t.Errorf("returnStmt.TokenLiteral not 'return' - got %q", returnStmt.TokenLiteral())
 		}
 	}
 
