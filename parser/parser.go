@@ -123,7 +123,7 @@ func (p *Parser) ParseProgram() *ast.Program {
 
 func (p *Parser) Errors() []string {
 	return p.errors
-}
+} 
 
 func (p *Parser) peekError(t token.TokenType) {
 	msg := fmt.Sprintf("Expected next token to be %s, got %s instead.", t, p.peekToken.Type)
